@@ -8,7 +8,6 @@ export default function Users() {
 
   const users = useSelector((state) => state.users.data);
   const loading = useSelector((state) => state.users.loading);
-      console.log(users);
 
   return (
     <section className="users">
