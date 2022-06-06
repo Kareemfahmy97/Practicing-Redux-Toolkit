@@ -1,25 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement, login, logout } from "./store/actions";
 
-function App() {
+const App = () => {
+  const countMe = useSelector((state) => state.counter.count);
+  const logMe = useSelector((state) => state.logging.isLogged);
+  console.log(logMe);
+  const dispatch = useDispatch();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="app">
+        <header>
+          <div>{countMe}</div>
+          {!logMe ? (
+            <button
+              onClick={() => {
+                dispatch(login());
+              }}
+            >
+              login
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                dispatch(logout());
+              }}
+            >
+              logout
+            </button>
+          )}
+        </header>
+        <div className="counter">
+          <button
+            onClick={() => {
+              dispatch(increment());
+            }}
+          >
+            +
+          </button>
+          <button
+            onClick={() => {
+              dispatch(increment(10));
+            }}
+          >
+            +10
+          </button>
+          <button
+            onClick={() => {
+              dispatch(decrement());
+            }}
+          >
+            -
+          </button>
+          <button
+            onClick={() => {
+              dispatch(decrement(5));
+            }}
+          >
+            -5
+          </button>
+        </div>
+      </div>
+    </>
   );
-}
+};
 
 export default App;
