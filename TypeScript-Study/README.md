@@ -1,0 +1,1 @@
+Practicing Typescript and studying.
